@@ -1,8 +1,10 @@
 import pickle
 from os.path import exists
 
-if exists('phonebook.pickle'):
-    phonebook_file = open('phonebook.pickle', 'r')
+filename = "phonebook.pickle"
+
+if exists('filename'):
+    phonebook_file = open('filename', 'r')
     phonebook = pickle.load(phonebook_file)
     phonebook_file.close()
 else:
@@ -29,9 +31,9 @@ def set2():
     phonebook[name]["home number"] = homenum
     phonebook[name]["cell number"] = cellnum
     phonebook[name]["email"] = email
-    print "%s's cell number is %s" % (name, homenum)
-    print "%s's cell number is %s" % (name, cellnum)
-    print "%s's email is %s" % (name, email)
+    print "%s's cell number is: %s" % (name, homenum)
+    print "%s's cell number is: %s" % (name, cellnum)
+    print "%s's email is: %s" % (name, email)
 
 
 def delete3():
@@ -44,6 +46,11 @@ def delete3():
 
 def listall4():
     print phonebook.items()
+
+def saveentries():
+    phonebook_file = open('filename', 'w')
+    pickle.dump(phonebook, phonebook_file)
+    phonebook_file.close()
 
 
 active_phonebook = True
@@ -71,9 +78,7 @@ while active_phonebook:
     elif choice == "4":
         listall4()
     elif choice == "5":
-        phonebook_file = open('phonebook.pickle', 'w')
-        pickle.dump(phonebook, phonebook_file)
-        phonebook_file.close()
+        saveentries()
     elif choice == "6":
         print "Bye!"
         active_phonebook = False
